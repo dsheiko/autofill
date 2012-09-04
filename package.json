@@ -1,0 +1,22 @@
+{
+  "name": "autofill",
+  "title": "Form auto-completion tool",
+  "version": "1.0",
+  "author": "Dmitry Sheiko",
+  "description": "Bookmaklet to fill out forms when testing by simply clicking on it.",
+  "homepage": "http://demo.dsheiko.com/autofill",
+  "licenses": [
+   {
+       "type": "MIT",
+       "url": "http://opensource.org/licenses/mit-license.php"
+   }],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dsheiko/autofill.git"
+  },
+  "main": "./src/autofill.js",
+  "dependencies": {
+  },
+  "engines": {
+  }
+}
