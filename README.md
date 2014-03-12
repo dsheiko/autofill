@@ -49,3 +49,4 @@ Let’s make a bookmaklet out of it. Create an HTML file and put there the link:
     <a href="javascript:(function(){s=document.createElement('script');s.type='text/javascript';s.src='http://demo.dsheiko.com/autofill/src/autofill.js?v='+parseInt(Math.random()*99999999);document.body.appendChild(s);})();">AutoFill</a>
 
 
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/a4a969331cc66c6583eb245aa3e24186 "githalytics.com")](http://githalytics.com/dsheiko/autofill)
