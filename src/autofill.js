@@ -30,7 +30,6 @@
             , 'site_link' : 'jon.winterfell.we'
             , 'how' : 'other (Please specify)'
             , 'specified' : 'This is a test data. Please, ignore it.'
-						, 'how': '(other)'
 						, 'euworkpermit': 'EU'
 						, 'publication' : 'Westeros Daily'
         };
