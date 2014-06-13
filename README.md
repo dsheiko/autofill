@@ -7,44 +7,53 @@ When testing a web-site, nevermind who you are developer or QA-engineer, it happ
 
 Well, what I propose is a very simple tool which you can use anywhere for form testing. You need to take this JS code and fill it once with your own test data:
 
-    (function( window ) {
-        var document = window.document,
-            fieldValueMap = {
-                  'title' : 'Ms.'
-                , 'name' : 'JonSnow'
-                , 'fillname' : 'Jon Snow'
-                , 'firstname' : 'Jon'
-                , 'lastname'  : 'Snow'
-                , 'email'     : 'jon.snow@winterfell.we'
-                , 'username' : 'Stark'
-                , 'password' : 'wintercomes'
-                , 'confirmation' : 'wintercomes'
-                , 'position' : 'Lord Commander'
-                , 'zipcode' : 'wintercomes'
-                , 'country' : 'Westeros'
-                , 'city' : 'The Wall'
-                , 'company' : 'Night Watch'
-                , 'address' : 'The Black Tower'
-                , 'phone' : 777777
-                , 'nationality' : 'Westerosi'
-                , 'comment' : 'This is a test data. Please, ignore it.'
-                , 'jobtitle' : 'Crow'
-                , 'experiance' : 'Veteran (5+)'
-                , 'site_link' : 'jon.winterfell.we'
-                , 'how' : 'other (Please specify)'
-                , 'specified' : 'This is a test data. Please, ignore it.'
-            };
+```
+(function( window ) {
+  "use strict";
+  var document = window.document,
+      fieldValueMap = {
+            'title' : 'Ms.'
+          , 'name' : 'JonSnow'
+          , 'fillname' : 'Jon Snow'
+          , 'firstname' : 'Jon'
+          , 'lastname'  : 'Snow'
+          , 'email'     : 'jon.snow@winterfell.we'
+          , 'username' : 'Stark'
+          , 'password' : 'wintercomes'
+          , 'confirmation' : 'wintercomes'
+          , 'position' : 'Lord Commander'
+          , 'zipcode' : 'wintercomes'
+          , 'country' : 'United States'
+          , 'city' : 'The Wall'
+          , 'company' : 'Night Watch'
+          , 'address' : 'The Black Tower'
+          , 'phone' : 777777
+          , 'nationality' : 'Westerosi'
+          , 'comment' : 'This is a test data. Please, ignore it.'
+          , 'jobtitle' : 'Crow'
+          , 'experiance' : 'Veteran (5+)'
+          , 'site_link' : 'jon.winterfell.we'
+          , 'how' : 'other (Please specify)'
+          , 'specified' : 'This is a test data. Please, ignore it.'
+          , 'euworkpermit': 'EU'
+          , 'publication' : 'Westeros Daily'
+      };
 
-        Object.keys( fieldValueMap ).forEach(function( name ){
-            var input = document.querySelector( "form input[name=" + name + "]" )
-                || document.querySelector( "form textarea[name=" + name + "]" );
-            input && ( input.value = fieldValueMap[ name ] );
-        });
+    Object.keys( fieldValueMap ).forEach(function( name ){
 
-    })( window );
+        var input = document.querySelector( "form input[name='" + name + "']" )
+						|| document.querySelector( "form select[name='" + name + "']" )
+            || document.querySelector( "form textarea[name='" + name + "']" );
 
+        input && input.type !== "hidden" && ( input.value = fieldValueMap[ name ] );
+    });
 
-Let’s make a bookmaklet out of it. Create an HTML file and put there the link:
+})( window );
+```
+
+You can run this code on a page with form by using Scratchpad (Firefox Shift-F4) or in console.
+
+You can also create a bookmaklet out of it. Create an HTML file and put there the link:
 
     <a href="javascript:(function(){s=document.createElement('script');s.type='text/javascript';s.src='http://demo.dsheiko.com/autofill/src/autofill.js?v='+parseInt(Math.random()*99999999);document.body.appendChild(s);})();">AutoFill</a>
 
