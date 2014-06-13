@@ -18,7 +18,7 @@
             , 'confirmation' : 'wintercomes'
             , 'position' : 'Lord Commander'
             , 'zipcode' : 'wintercomes'
-            , 'country' : 'Westeros'
+            , 'country' : 'United States'
             , 'city' : 'The Wall'
             , 'company' : 'Night Watch'
             , 'address' : 'The Black Tower'
@@ -30,10 +30,14 @@
             , 'site_link' : 'jon.winterfell.we'
             , 'how' : 'other (Please specify)'
             , 'specified' : 'This is a test data. Please, ignore it.'
+						, 'how': '(other)'
+						, 'euworkpermit': 'EU'
+						, 'publication' : 'Westeros Daily'
         };
 
     Object.keys( fieldValueMap ).forEach(function( name ){
         var input = document.querySelector( "form input[name=" + name + "]" )
+						|| document.querySelector( "form select[name=" + name + "]" )
             || document.querySelector( "form textarea[name=" + name + "]" );
         input && input.type !== "hidden" && ( input.value = fieldValueMap[ name ] );
     });
