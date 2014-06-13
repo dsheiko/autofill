@@ -1,7 +1,7 @@
 {
   "name": "autofill",
   "title": "Form auto-completion tool",
-  "version": "1.0",
+  "version": "0.1.1",
   "author": "Dmitry Sheiko",
   "description": "Bookmaklet to fill out forms when testing by simply clicking on it.",
   "homepage": "http://demo.dsheiko.com/autofill",

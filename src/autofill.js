@@ -36,9 +36,11 @@
         };
 
     Object.keys( fieldValueMap ).forEach(function( name ){
-        var input = document.querySelector( "form input[name=" + name + "]" )
-						|| document.querySelector( "form select[name=" + name + "]" )
-            || document.querySelector( "form textarea[name=" + name + "]" );
+
+        var input = document.querySelector( "form input[name='" + name + "']" )
+						|| document.querySelector( "form select[name='" + name + "']" )
+            || document.querySelector( "form textarea[name='" + name + "']" );
+
         input && input.type !== "hidden" && ( input.value = fieldValueMap[ name ] );
     });
 
