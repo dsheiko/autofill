@@ -60,3 +60,6 @@ You can also create a bookmaklet out of it. Create an HTML file and put there th
     <a href="javascript:(function(){s=document.createElement('script');s.type='text/javascript';s.src='http://demo.dsheiko.com/autofill/src/autofill.js?v='+parseInt(Math.random()*99999999);document.body.appendChild(s);})();">AutoFill</a>
 
 [![Analytics](https://ga-beacon.appspot.com/UA-1150677-13/dsheiko/autofill)](http://githalytics.com/dsheiko/autofill)
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dsheiko/autofill/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
