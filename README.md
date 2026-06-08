@@ -1,13 +1,16 @@
-Form auto-completion tool
-========
+# autofill.js
 
-Demo: http://demo.dsheiko.com/autofill/
+A bookmarklet that fills web form fields with test data in one click. Useful when you need to repeatedly test forms during development or QA — no more typing the same names, emails, and addresses by hand.
 
-When testing a web-site, nevermind who you are developer or QA-engineer, it happens to you pretty often to fill-in form fields again and again. Boring, stupid work, but how to make sure the form does still work as intended? Some fields added, CAPTCHA was attached, whatever else done –you have to run the test again. Besides, it will be repeated on different browsers. Browser form auto-completion feature helps a bit, but that is not the same as when you have various sets of test-data always ready to apply on a form, isn’t it?
+Works with plain HTML forms and modern JS frameworks (React, Vue, Angular) — it dispatches `input` and `change` events so framework-controlled fields update correctly.
 
-Well, what I propose is a very simple tool which you can use anywhere for form testing. You need to take this JS code and fill it once with your own test data:
+## How it works
 
-```
+The script maps common field `name` attributes to test values. On run, it finds every matching `input`, `select`, and `textarea` on the page and sets the value.
+
+Edit `fieldValueMap` in `src/autofill.js` to use your own data:
+
+```js
 (function( window ) {
   "use strict";
   var document = window.document,
@@ -34,32 +37,41 @@ Well, what I propose is a very simple tool which you can use anywhere for form t
           , "nationality" : "Westerosi"
           , "comment"     : "This is a test data. Please, ignore it."
           , "jobtitle"    : "Crow"
-          , "experiance"  : "Veteran (5+)"
+          , "experience"  : "Veteran (5+)"
           , "site_link"   : "jon.winterfell.we"
           , "how"         : "other (Please specify)"
           , "specified"   : "This is a test data. Please, ignore it."
           , "publication" : "Westeros Daily"
       };
 
-    Object.keys( fieldValueMap ).forEach(function( name ){
-
-        var input = document.querySelector( "form input[name='" + name + "']" )
-						|| document.querySelector( "form select[name='" + name + "']" )
-            || document.querySelector( "form textarea[name='" + name + "']" );
-
-        input && input.type !== "hidden" && ( input.value = fieldValueMap[ name ] );
-    });
+  Object.keys( fieldValueMap ).forEach(function( name ){
+      var selector = "form input[name='" + name + "'],"
+                   + "form select[name='" + name + "'],"
+                   + "form textarea[name='" + name + "']";
+      [].slice.call( document.querySelectorAll( selector ) ).forEach(function( el ){
+          if ( el.type !== "hidden" ) {
+              el.value = fieldValueMap[ name ];
+              el.dispatchEvent( new Event( "input",  { bubbles: true } ) );
+              el.dispatchEvent( new Event( "change", { bubbles: true } ) );
+          }
+      });
+  });
 
 })( window );
 ```
 
-You can run this code on a page with form by using Scratchpad (Firefox Shift-F4) or in console.
+## Usage
 
-You can also create a bookmaklet out of it. Create an HTML file and put there the link:
+**Browser console** — paste the script and run it on any page with a form.
 
-    <a href="javascript:(function(){s=document.createElement('script');s.type='text/javascript';s.src='http://demo.dsheiko.com/autofill/src/autofill.js?v='+parseInt(Math.random()*99999999);document.body.appendChild(s);})();">AutoFill</a>
+**Bookmarklet** — host the script somewhere and add this link to your bookmarks bar:
 
-[![Analytics](https://ga-beacon.appspot.com/UA-1150677-13/dsheiko/autofill)](http://githalytics.com/dsheiko/autofill)
+```html
+<a href="javascript:(function(){s=document.createElement('script');s.type='text/javascript';s.src='YOUR_URL/autofill.js?v='+parseInt(Math.random()*99999999);document.body.appendChild(s);})();">AutoFill</a>
+```
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dsheiko/autofill/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+Replace `YOUR_URL` with wherever you host the file. Click the bookmark on any page to fill the form.
 
+## License
+
+MIT

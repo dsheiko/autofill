@@ -30,7 +30,7 @@
           , "nationality" : "Westerosi"
           , "comment"     : "This is a test data. Please, ignore it."
           , "jobtitle"    : "Crow"
-          , "experiance"  : "Veteran (5+)"
+          , "experience"  : "Veteran (5+)"
           , "site_link"   : "jon.winterfell.we"
           , "how"         : "other (Please specify)"
           , "specified"   : "This is a test data. Please, ignore it."
@@ -38,12 +38,16 @@
       };
 
     Object.keys( fieldValueMap ).forEach(function( name ){
-
-        var input = document.querySelector( "form input[name='" + name + "']" )
-						|| document.querySelector( "form select[name='" + name + "']" )
-            || document.querySelector( "form textarea[name='" + name + "']" );
-
-        input && input.type !== "hidden" && ( input.value = fieldValueMap[ name ] );
+        var selector = "form input[name='" + name + "'],"
+                     + "form select[name='" + name + "'],"
+                     + "form textarea[name='" + name + "']";
+        [].slice.call( document.querySelectorAll( selector ) ).forEach(function( el ){
+            if ( el.type !== "hidden" ) {
+                el.value = fieldValueMap[ name ];
+                el.dispatchEvent( new Event( "input",  { bubbles: true } ) );
+                el.dispatchEvent( new Event( "change", { bubbles: true } ) );
+            }
+        });
     });
 
 })( window );

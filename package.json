@@ -1,22 +1,32 @@
 {
   "name": "autofill",
-  "title": "Form auto-completion tool",
-  "version": "0.1.1",
+  "version": "0.1.3",
+  "description": "Bookmarklet that fills web form fields with test data in one click. Works with plain HTML and React/Vue/Angular forms.",
+  "keywords": [
+    "autofill",
+    "bookmarklet",
+    "form",
+    "form-fill",
+    "testing",
+    "qa",
+    "developer-tools",
+    "test-data"
+  ],
   "author": "Dmitry Sheiko",
-  "description": "Bookmaklet to fill out forms when testing by simply clicking on it.",
-  "homepage": "http://demo.dsheiko.com/autofill",
-  "licenses": [
-   {
-       "type": "MIT",
-       "url": "http://opensource.org/licenses/mit-license.php"
-   }],
+  "license": "MIT",
+  "homepage": "https://github.com/dsheiko/autofill#readme",
+  "bugs": {
+    "url": "https://github.com/dsheiko/autofill/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/dsheiko/autofill.git"
   },
   "main": "./src/autofill.js",
-  "dependencies": {
-  },
-  "engines": {
-  }
+  "files": [
+    "src/",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ]
 }
